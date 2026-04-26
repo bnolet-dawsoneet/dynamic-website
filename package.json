@@ -1,0 +1,12 @@
+{
+  "name": "dawson-eet-site",
+  "version": "1.0.0",
+  "description": "Dawson College Electronics Engineering Technology program site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
