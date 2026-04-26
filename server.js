@@ -6,13 +6,17 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 
-const pages = ['index', 'program', 'courses', 'careers', 'contact'];
+const pages = ['index', 'program', 'courses', 'careers'];
 
 pages.forEach(page => {
   const route = page === 'index' ? '/' : `/${page}`;
   app.get(route, (req, res) => {
     res.sendFile(path.join(__dirname, 'views', `${page}.html`));
   });
+});
+
+app.get('/contact', (req, res) => {
+  res.redirect('https://www.dawsoncollege.qc.ca/electrical-engineering-technology/faculty-staff-list/');
 });
 
 app.use((req, res) => {
