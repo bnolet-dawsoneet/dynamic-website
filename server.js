@@ -5,13 +5,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 const pages = ['index', 'program', 'courses', 'careers'];
 
 pages.forEach(page => {
   const route = page === 'index' ? '/' : `/${page}`;
   app.get(route, (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', `${page}.html`));
+    res.render(page);
   });
 });
 
@@ -20,7 +21,7 @@ app.get('/contact', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).render('404');
 });
 
 app.listen(PORT, () => {
